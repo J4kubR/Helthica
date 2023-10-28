@@ -2,9 +2,9 @@ import MainLogo from "./logo/Main_logo.png";
 
 function NavigationBar() {
   return (
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="#">
+    <nav className="navbar navbar-expand-lg bg-body-tertiary">
+      <div className="container-fluid">
+        <a className="navbar-brand" href="#">
           <img src={MainLogo} alt="Logo" width={40} height={40} />
           <h5>Heltica</h5>
         </a>
@@ -21,7 +21,47 @@ function NavigationBar() {
         </button>
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-            {/* ... Your other list items ... */}
+            <li className="nav-item">
+              <a className="nav-link active" aria-current="page" href="#">
+                Home
+              </a>
+            </li>
+            <li className="nav-item">
+              <a className="nav-link" href="#">
+                Link
+              </a>
+            </li>
+            <li className="nav-item">
+              <a
+                className="nav-link dropdown-toggle"
+                href="#"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                Opcje
+              </a>
+              <ul
+                className="dropdown-menu"
+                aria-aria-labelledby="navbarDropdown"
+              >
+                <li>
+                  <a className="dropdown-item" href="#">
+                    Cos tam
+                  </a>
+                </li>
+                <li>
+                  <a className="dropdown-item" href="#">
+                    Cos tam
+                  </a>
+                </li>
+                <li>
+                  <a className="dropdown-item" href="#">
+                    Cos tam
+                  </a>
+                </li>
+              </ul>
+            </li>
           </ul>
           <form className="d-flex" role="search">
             <input
