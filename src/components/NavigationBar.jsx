@@ -23,14 +23,19 @@ function NavigationBar() {
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item">
               <a className="nav-link active" aria-current="page" href="#">
-                Home
+                Kalendarz
               </a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="#">
+              <a className="nav-link active" aria-current="page" href="#">
                 Link
               </a>
             </li>
+          </ul>
+        </div>
+
+        <div className="btn-group" id="navbarSupportedContent">
+          <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item">
               <a
                 className="nav-link dropdown-toggle"
@@ -41,23 +46,18 @@ function NavigationBar() {
               >
                 Opcje
               </a>
-              <ul
-                className="dropdown-menu"
-                aria-aria-labelledby="navbarDropdown"
-              >
+              <ul className="dropdown-menu">
                 <li>
                   <a className="dropdown-item" href="#">
-                    Cos tam
+                    Wszyscy pacjenci
                   </a>
                 </li>
                 <li>
-                  <a className="dropdown-item" href="#">
-                    Cos tam
-                  </a>
+                  <a className="dropdown-item" href="#"></a>
                 </li>
                 <li>
                   <a className="dropdown-item" href="#">
-                    Cos tam
+                    Strona internetowa do wspomagania
                   </a>
                 </li>
               </ul>
