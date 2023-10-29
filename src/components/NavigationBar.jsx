@@ -11,7 +11,7 @@ function collapseNavbarText() {
             aria-current="page"
             href="#"
           >
-            Cos tam
+            Costam
           </a>
         </li>
         <li className="nav-item">
@@ -20,7 +20,7 @@ function collapseNavbarText() {
             aria-current="page"
             href="#"
           >
-            Cos tam
+            Costam
           </a>
         </li>
 
@@ -45,7 +45,7 @@ function collapseNavbarText() {
             Opcje
           </a>
 
-          <ul className="dropdown-menu" style={{ backgroundColor: "#999999" }}>
+          <ul className="dropdown-menu">
             <li>
               <a className="dropdown-item" href="#">
                 Wszyscy pacjenci
@@ -87,10 +87,7 @@ function collapseNavbarText() {
 
 function NavigationBar() {
   return (
-    <nav
-      style={{ backgroundColor: "#cccccc" }}
-      className="navbar navbar-expand-lg rounded-5"
-    >
+    <nav className="navbar navbar-expand-lg rounded-5">
       <div className="container-fluid">
         <a
           className="navbar-brand px-2 fw-bold fst-italic text-success-emphasis"
@@ -99,9 +96,7 @@ function NavigationBar() {
           <img
             src={mainLogo}
             alt="Logo"
-            width={30}
-            height={28}
-            className="d-inline-block align-text-bottom"
+            className="d-inline-block align-text-bottom logo"
           />
           Heltica
         </a>

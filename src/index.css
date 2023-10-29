@@ -1,9 +1,16 @@
 body {
-  margin: 0;
-  height: 100vh;
-  background: linear-gradient(-190deg, #707070, #4e664ede); /* Define your gradient colors */
-  font-family: Arial, sans-serif;
-  color: #ffffff; /* Set the font color for better contrast */
+  margin: 3px;
+  background: linear-gradient(-30deg, #4a752c, #6d6c6c7a);
+  font-family: Arial, sans-serif; 
+  color: #ffffff; 
+
+}
+.navbar{
+  background: linear-gradient(-2deg, #ffffff, #2861005b);
+  color: #ffffff; 
 }
 
-
+.dropdown-menu{
+  background: linear-gradient(-2deg, #ffffff, #2861005b);
+  color: #ffffff; 
+}
