@@ -1,10 +1,22 @@
 # Project-CCCLVI-
 
+LANGUAGE: POLISH for now.
+
 WHAT IS THE PURPOSE OF THIS APP:
 The purpose is to maintain and evolve the Medical Sector with AI and its possibilites.
 
 NAME OF THE APP:
-pHeltica
+Heltica
+
+# 29.10.2023
+Tried out the colors of the background and the elements on the site, it can be better, keeping a 20% focus on it.
+Mostly spending time designing the layout of the website, functionality and which elements should be on the front-end.
+Writing them all on a piece of paper, with a sketch of the web design.
+
+# 28.10.2023
+Focusing on the layout of the app, trying out which colors would work.
+Focusing on the small details, more user-friendly more work done for the doctors.
+Trying to keep the app simple so that it won't feel overwhelming.
 
 # 25.10.2023
 
