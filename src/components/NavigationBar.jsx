@@ -11,7 +11,7 @@ function collapseNavbarText() {
             aria-current="page"
             href="#"
           >
-            Costam
+            Deklaracje
           </a>
         </li>
         <li className="nav-item">
@@ -20,7 +20,7 @@ function collapseNavbarText() {
             aria-current="page"
             href="#"
           >
-            Costam
+            Świadczenia
           </a>
         </li>
 
@@ -30,7 +30,7 @@ function collapseNavbarText() {
             aria-current="page"
             href="#"
           >
-            Kalendarz
+            Terminarz
           </a>
         </li>
 
