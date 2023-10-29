@@ -34,7 +34,7 @@ function collapseNavbarText() {
           </a>
         </li>
 
-        <li className="nav-item dropdown">
+        <li className="nav-item dropdown mx-4">
           <a
             className="nav-link dropdown-toggle"
             href="#"
@@ -45,7 +45,7 @@ function collapseNavbarText() {
             Opcje
           </a>
 
-          <ul className="dropdown-menu">
+          <ul className="dropdown-menu" style={{ backgroundColor: "#999999" }}>
             <li>
               <a className="dropdown-item" href="#">
                 Wszyscy pacjenci
@@ -53,12 +53,18 @@ function collapseNavbarText() {
             </li>
 
             <li>
-              <a className="dropdown-item" href="#"></a>
+              <a
+                className="dropdown-item"
+                href="https://pharmindex.pl"
+                target="_blank"
+              >
+                Pharmaindex
+              </a>
             </li>
 
             <li>
               <a className="dropdown-item" href="#">
-                Strona internetowa do wspomagania
+                Ustawienia
               </a>
             </li>
           </ul>
@@ -82,7 +88,7 @@ function collapseNavbarText() {
 function NavigationBar() {
   return (
     <nav
-      style={{ backgroundColor: "#444444" }}
+      style={{ backgroundColor: "#cccccc" }}
       className="navbar navbar-expand-lg rounded-5"
     >
       <div className="container-fluid">
