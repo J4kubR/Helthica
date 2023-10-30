@@ -1,7 +1,7 @@
 import mainLogo from "./logo/Main_logo.png";
 import "./NavigationBarFunctions.jsx";
 
-function collapseNavbarText() {
+const collapseNavbarText = () => {
   return (
     <div className="collapse navbar-collapse" id="navbarSupportedContent">
       <ul className="navbar-nav me-auto md-2 mb-lg-0">
@@ -77,15 +77,15 @@ function collapseNavbarText() {
           placeholder="Szukaj pacjentów"
           aria-label="Search"
         />
-        <button className="btn btn-outline-success mx-3" type="submit">
+        <button className="btn btn-success mx-3" type="submit">
           Szukaj
         </button>
       </form>
     </div>
   );
-}
+};
 
-function NavigationBar() {
+const NavigationBar = () => {
   return (
     <nav className="navbar navbar-expand-lg rounded-5">
       <div className="container-fluid">
@@ -116,6 +116,6 @@ function NavigationBar() {
       </div>
     </nav>
   );
-}
+};
 
 export default NavigationBar;

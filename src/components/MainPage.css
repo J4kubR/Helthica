@@ -7,6 +7,10 @@
   background: linear-gradient(20deg, #646464, #f3f3f39d);
 }
 
+.form-control {
+  background: linear-gradient(-190deg, #bbbbbb, #859c85de);
+}
+
 .left-column {
   flex: 1;
   padding: 20px;
