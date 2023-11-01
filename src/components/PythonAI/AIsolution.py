@@ -1,69 +1,96 @@
 import os
+import pandas as pd
+import numpy as np
+import tensorflow as tf
+from tensorflow import keras
+from keras import layers
+from sklearn.model_selection import train_test_split
+from keras.preprocessing.text import Tokenizer
+from sklearn.preprocessing import LabelEncoder
+from keras.preprocessing.sequence import pad_sequences
 
 os.environ["TF_CPP_MIN_LOG_LEVEL"] = "2"
-from tensorflow import keras
-import numpy as np
 
-# import matplotlib.pyplot as plt
+# Load the dataset
+dataset = pd.read_csv("./archive/Symptom2Disease.csv")
 
-mnist = keras.datasets.mnist
+# Assuming your dataset has 'text' and 'label' columns
+X = dataset["text"]
+y = dataset["label"]
 
-(x_train, y_train), (x_test, y_test) = mnist.load_data()
-# num = 25
-# images = x_train[:num]
-# labels = y_train[:num]
-#
-# num_row = 5
-# num_col = 5
-# plot images
-# fig, axes = plt.subplots(num_row, num_col, figsize=(1.5 * num_col, 2 * num_row))
-# for i in range(num):
-#    ax = axes[i // num_col, i % num_col]
-#    ax.imshow(images[i], cmap="gray")
-#    ax.set_title("Label: {}".format(labels[i]))
-# plt.tight_layout()
-# plt.show()
-# normalize: 0,255 -> 0,1
-x_train, x_test = x_train / 255.0, x_test / 255.0
-# model
-model = keras.models.Sequential(
+# Split the data into training and testing sets
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.2, random_state=42
+)
+
+label_encoder = LabelEncoder()
+y_train_encoded = label_encoder.fit_transform(y_train)
+y_test_encoded = label_encoder.transform(y_test)
+
+# Tokenize the text data
+tokenizer = Tokenizer()
+tokenizer.fit_on_texts(X_train)
+
+# Convert text data to sequences of indices
+X_train_sequences = tokenizer.texts_to_sequences(X_train)
+X_test_sequences = tokenizer.texts_to_sequences(X_test)
+
+# Pad sequences to a fixed length
+maxlen = 1000  # Adjust as needed based on your data
+X_train_padded = pad_sequences(
+    X_train_sequences, maxlen=maxlen, padding="post", truncating="post"
+)
+X_test_padded = pad_sequences(
+    X_test_sequences, maxlen=maxlen, padding="post", truncating="post"
+)
+
+# Define the model
+num_classes = len(label_encoder.classes_)
+model = keras.Sequential(
     [
-        keras.layers.Flatten(input_shape=(28, 28)),
-        keras.layers.Dense(128, activation="relu"),
-        keras.layers.Dense(10),
+        layers.Embedding(
+            input_dim=len(tokenizer.word_index) + 1, output_dim=100, input_length=maxlen
+        ),
+        layers.Flatten(),
+        layers.Dense(num_classes, activation="softmax"),
     ]
 )
-# print(y_test)
-# print(x_train[0])
-# print(model.summary())
-# model = keras.Sequential()
-# model.add(keras.layers.Flatten(input_shape=(28,28))
-# model.add(keras.layers.Dense(128, activation='relu'))
-# model.add(keras.layers.Dense(10))
-# loss and optimizer
-# y = 0, y[1,0,0,0,0,0,0,0,0,0]
-loss = keras.losses.SparseCategoricalCrossentropy(from_logits=True)
-optim = keras.optimizers.Adam(learning_rate=0.002)  # PLAY AROUND WITH LEARNING RATE!!
-metrics = ["accuracy"]
-model.compile(loss=loss, optimizer=optim, metrics=metrics)
-# training
-batch_size = 64
-epochs = 7
-# fitting
-model.fit(
-    x_train, y_train, batch_size=batch_size, epochs=epochs, shuffle=True, verbose=2
+
+# Compile the model
+model.compile(
+    optimizer="adam", loss="sparse_categorical_crossentropy", metrics=["accuracy"]
 )
-print("")
-# evaluation
-model.evaluate(x_test, y_test, batch_size=batch_size, verbose=2)
+
+# Train the model
+epochs = 7
+batch_size = 2
+
+model.fit(
+    X_train_padded,
+    y_train_encoded,
+    epochs=epochs,
+    batch_size=batch_size,
+    validation_data=(X_test_padded, y_test_encoded),
+)
 
 
-def AIprediction(index):
-    # prediction
-    probability_model = keras.models.Sequential([model, keras.layers.Softmax()])
+# Evaluate the model
+test_loss, test_accuracy = model.evaluate(X_test_padded, y_test_encoded)
 
-    predictions = probability_model(x_test)
-    pred0 = predictions[0:100]
-    label0 = np.argmax(pred0, axis=1)
+model.save("AI_pred_v1.h5")
 
-    return str(label0[index])
+
+def AI_prediction(model, tokenizer, max_sequence_length, sentences):
+    # Tokenize and pad the input sentences
+    sequences = tokenizer.texts_to_sequences(sentences)
+    padded_sequences = pad_sequences(
+        sequences, maxlen=max_sequence_length, padding="post", truncating="post"
+    )
+
+    # Make predictions
+    predictions = model.predict(padded_sequences)
+
+    # Convert predictions to class labels
+    predicted_labels = np.argmax(predictions, axis=1)
+
+    return predicted_labels
