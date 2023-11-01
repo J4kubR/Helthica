@@ -25,7 +25,7 @@ const MainPage = () => {
             <input
               className="form-control me-2"
               type="search"
-              placeholder="Szukaj pacjentów"
+              placeholder="Wyszukaj choroby"
               aria-label="Search"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
