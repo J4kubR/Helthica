@@ -6,15 +6,13 @@ from keras.models import load_model
 app = Flask(__name__)
 CORS(app)
 
-
 model = load_model("./AI_pred_v1.h5")
 
 
-@app.route("/get-function", methods=["POST"])
-def get_function():
-    data = request.get_json()
-    sentences = data.get("sentences")
-    predicted_labels = AI_prediction(model, tokenizer, maxlen, sentences)
+@app.route("/get-function/<query>", methods=["GET"])
+def get_function(query):
+    sentences = [query]
+    predicted_labels = AI_prediction(model, tokenizer, maxlen, sentences).tolist()
     return jsonify({"predicted_labels": predicted_labels})
 
 

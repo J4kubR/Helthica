@@ -62,8 +62,8 @@ model.compile(
 )
 
 # Train the model
-epochs = 7
-batch_size = 2
+epochs = 5
+batch_size = 18
 
 model.fit(
     X_train_padded,
@@ -93,4 +93,7 @@ def AI_prediction(model, tokenizer, max_sequence_length, sentences):
     # Convert predictions to class labels
     predicted_labels = np.argmax(predictions, axis=1)
 
-    return predicted_labels
+    # Convert numerical labels back to disease names
+    predicted_diseases = label_encoder.inverse_transform(predicted_labels)
+
+    return predicted_diseases
