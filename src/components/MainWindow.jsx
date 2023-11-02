@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 
-const MainPage = () => {
+const MainWindow = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [result, setresult] = useState(null);
 
@@ -17,7 +17,7 @@ const MainPage = () => {
   };
 
   return (
-    <div className="containter rounded-5">
+    <div className="container rounded-5">
       <div className="left-column rounded-5">Hello 1</div>
       <div className="right-rows">
         <div className="row rounded-5 rowmarginbottom">
@@ -43,4 +43,4 @@ const MainPage = () => {
   );
 };
 
-export default MainPage;
+export default MainWindow;

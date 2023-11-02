@@ -1,41 +1,43 @@
 import mainLogo from "./logo/Main_logo.png";
 import "./NavigationBarFunctions.jsx";
+import { BrowserRouter as Router } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const collapseNavbarText = () => {
   return (
     <div className="collapse navbar-collapse" id="navbarSupportedContent">
       <ul className="navbar-nav me-auto md-2 mb-lg-0">
         <li className="nav-item">
-          <a
+          <Link
             className="nav-link active mx-4 text-body-secondary align-baseline"
             aria-current="page"
             href="#"
           >
             Deklaracje
-          </a>
+          </Link>
         </li>
         <li className="nav-item">
-          <a
+          <Link
             className="nav-link active mx-4 text-body-secondary"
             aria-current="page"
             href="#"
           >
             Świadczenia
-          </a>
+          </Link>
         </li>
 
         <li className="nav-item">
-          <a
+          <Link
             className="nav-link active mx-4 text-body-secondary"
             aria-current="page"
             href="#"
           >
             Terminarz
-          </a>
+          </Link>
         </li>
 
         <li className="nav-item dropdown mx-4">
-          <a
+          <Link
             className="nav-link dropdown-toggle"
             href="#"
             role="button"
@@ -43,13 +45,13 @@ const collapseNavbarText = () => {
             aria-expanded="false"
           >
             Opcje
-          </a>
+          </Link>
 
           <ul className="dropdown-menu">
             <li>
-              <a className="dropdown-item" href="#">
+              <Link className="dropdown-item" href="#">
                 Wszyscy pacjenci
-              </a>
+              </Link>
             </li>
 
             <li>
@@ -63,9 +65,9 @@ const collapseNavbarText = () => {
             </li>
 
             <li>
-              <a className="dropdown-item" href="#">
+              <Link className="dropdown-item" href="#">
                 Ustawienia
-              </a>
+              </Link>
             </li>
           </ul>
         </li>

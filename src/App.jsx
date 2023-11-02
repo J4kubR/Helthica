@@ -1,17 +1,17 @@
-import { useState } from "react";
+import React from "react";
+import MainWindow from "./components/MainWindow";
+import { BrowserRouter as Router } from "react-router-dom";
 import NavigationBar from "./components/NavigationBar";
-import MainPage from "./components/MainPage";
-import "./App.css";
 
-function App() {
+const App = () => {
   return (
-    <>
-      <div>
+    <div className="App">
+      <Router>
         <NavigationBar />
-        <MainPage />
-      </div>
-    </>
+        <MainWindow />
+      </Router>
+    </div>
   );
-}
+};
 
 export default App;
