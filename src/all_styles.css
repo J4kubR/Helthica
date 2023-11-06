@@ -1,11 +1,11 @@
 body {
   margin: 3px;
-  background: linear-gradient(-30deg, #20532f, #6d6c6c7a);
   font-family: 'Times New Roman', Times, serif; 
   font-weight: bold;
   font-style: oblique;
   font-size: 18px;
-  color: #ffffff; 
+  background: linear-gradient(-30deg, #20532f, #6d6c6c7a);
+  color: #ffffff;
 
 }
 .navbar{
@@ -79,4 +79,46 @@ body {
 .logo{
   width: 36px;
   height: 26px;
+}
+
+.date-selector {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.timetable {
+  display: flex;
+}
+
+.time-column {
+  flex-shrink: 0;
+  margin-right: 10px;
+}
+
+.time-slot {
+  margin-bottom: 10px;
+}
+
+.schedule {
+  flex-grow: 1;
+}
+
+.appointment {
+  background-color: #f0f0f0;
+  padding: 5px;
+  margin-bottom: 5px;
+}
+
+.button {
+  flex: auto;
+  margin: 5px;
+  margin-inline: 150px;
+}
+
+.container-timetable{
+  height: fit-content;
+  flex: auto;
+  background: linear-gradient(20deg, #646464, #f3f3f39d);
 }

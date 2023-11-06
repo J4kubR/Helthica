@@ -11,7 +11,7 @@ const MainWindow = () => {
     axios
       .get(`http://127.0.0.1:5000/get-function/${searchQuery}`)
       .then((response) => {
-        setresult(response.data.predicted_labels[0]); // Assuming predicted_labels is a list with one element
+        setresult(response.data.predicted_labels[0]);
       })
       .catch((error) => console.error("Error:", error));
   };

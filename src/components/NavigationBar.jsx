@@ -1,6 +1,5 @@
 import mainLogo from "./logo/Main_logo.png";
 import "./NavigationBarFunctions.jsx";
-import { BrowserRouter as Router } from "react-router-dom";
 import { Link } from "react-router-dom";
 
 const collapseNavbarText = () => {
@@ -11,7 +10,7 @@ const collapseNavbarText = () => {
           <Link
             className="nav-link active mx-4 text-body-secondary align-baseline"
             aria-current="page"
-            href="#"
+            to="/Deklaracje"
           >
             Deklaracje
           </Link>
@@ -20,7 +19,7 @@ const collapseNavbarText = () => {
           <Link
             className="nav-link active mx-4 text-body-secondary"
             aria-current="page"
-            href="#"
+            to="/Swiadczenia"
           >
             Świadczenia
           </Link>
@@ -30,26 +29,25 @@ const collapseNavbarText = () => {
           <Link
             className="nav-link active mx-4 text-body-secondary"
             aria-current="page"
-            href="#"
+            to="/Terminarz"
           >
             Terminarz
           </Link>
         </li>
 
         <li className="nav-item dropdown mx-4">
-          <Link
+          <a
             className="nav-link dropdown-toggle"
-            href="#"
             role="button"
             data-bs-toggle="dropdown"
             aria-expanded="false"
           >
             Opcje
-          </Link>
+          </a>
 
           <ul className="dropdown-menu">
             <li>
-              <Link className="dropdown-item" href="#">
+              <Link className="dropdown-item" to="#">
                 Wszyscy pacjenci
               </Link>
             </li>
@@ -65,7 +63,7 @@ const collapseNavbarText = () => {
             </li>
 
             <li>
-              <Link className="dropdown-item" href="#">
+              <Link className="dropdown-item" to="#">
                 Ustawienia
               </Link>
             </li>
@@ -93,7 +91,7 @@ const NavigationBar = () => {
       <div className="container-fluid">
         <a
           className="navbar-brand px-2 fw-bold fst-italic text-success-emphasis"
-          href="#"
+          href="/"
         >
           <img
             src={mainLogo}

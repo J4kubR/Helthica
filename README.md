@@ -8,12 +8,20 @@ The purpose is to maintain and evolve the Medical Sector with AI and its possibi
 NAME OF THE APP:
 Heltica
 
+# 07.11.2023
+
+Had some time off, did research about how AI/ML works and how can it be implemented more securely and efficient.
+Learning how to make the rest of the navbar and its functionality. The need for this kind of application is huge.
+I just hope to make it in time.
+
 # 29.10.2023
+
 Tried out the colors of the background and the elements on the site, it can be better, keeping a 20% focus on it.
 Mostly spending time designing the layout of the website, functionality and which elements should be on the front-end.
 Writing them all on a piece of paper, with a sketch of the web design.
 
 # 28.10.2023
+
 Focusing on the layout of the app, trying out which colors would work.
 Focusing on the small details, more user-friendly more work done for the doctors.
 Trying to keep the app simple so that it won't feel overwhelming.
