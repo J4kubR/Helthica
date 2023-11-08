@@ -7,10 +7,12 @@ import { Calendar, dateFnsLocalizer } from "react-big-calendar";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { enUS } from "date-fns/locale";
+import { pl } from "date-fns/locale";
+
+format(new Date(), "PPPP", { locale: pl }); // Formats date in a readable format for Polish locale
 
 const locales = {
-  "en-US": enUS,
+  pl: pl,
 };
 const localizer = dateFnsLocalizer({
   format,
@@ -43,8 +45,19 @@ function TimeTable() {
   }
 
   return (
-    <div className="container rounded-5">
-      <div className="form-section">
+    <Calendar
+      localizer={localizer}
+      events={allEvents}
+      startAccessor="start"
+      endAccessor="end"
+      className="calendar"
+    />
+  );
+}
+
+export default TimeTable;
+
+/*      <div className="form-section">
         <input
           type="text"
           placeholder="Add Title"
@@ -63,19 +76,7 @@ function TimeTable() {
           selected={newEvent.end}
           onChange={(end) => setNewEvent({ ...newEvent, end })}
         />
-        <button stlye={{ marginTop: "10px" }} onClick={handleAddEvent}>
+        <button style={{ marginTop: "10px" }} onClick={handleAddEvent}>
           Add Event
         </button>
-      </div>
-      <Calendar
-        localizer={localizer}
-        events={allEvents}
-        startAccessor="start"
-        endAccessor="end"
-        style={{ height: 500, margin: "50px" }}
-      />
-    </div>
-  );
-}
-
-export default TimeTable;
+      </div>*/

@@ -80,69 +80,9 @@ body {
   width: 36px;
   height: 26px;
 }
-.form-section {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 20px;
-}
 
-.form-section > * {
-  margin: 0 10px;
-}
+.calendar{
+  flex:1;
+  height: 300px;
 
-.form-section input[type="text"],
-.form-section .react-datepicker-wrapper {
-  flex-grow: 1;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}
-
-.form-section button {
-  padding: 10px 20px;
-  background-color: #0056b3;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.form-section button:hover {
-  background-color: #003d82;
-}
-
-/* Calendar styling */
-.rbc-calendar {
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
-  border-radius: 5px;
-  overflow: hidden;
-}
-
-.rbc-today {
-  background-color: rgba(0, 123, 255, 0.25) !important; /* Highlight 'today' with a different color */
-}
-
-.rbc-event {
-  background-color: #0056b3;
-  color: white;
-  border: none;
-  padding: 2px 5px;
-  border-radius: 3px;
-}
-
-.rbc-event:hover {
-  background-color: #003d82;
-}
-
-/* Responsive design */
-@media (max-width: 768px) {
-  .form-section {
-    flex-direction: column;
-    align-items: stretch;
-  }
-
-  .form-section > * {
-    margin: 5px 0; /* Stack the inputs vertically with spacing */
-  }
 }
