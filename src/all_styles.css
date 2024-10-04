@@ -5,7 +5,7 @@ body {
   font-size: 18px;
   background: linear-gradient(-30deg, #20532f, #6d6c6c7a);
   color: #ffffff;
-
+  height: 100vh;
 }
 .navbar{
   background: linear-gradient(-2deg, #ffffff, #2861005b);
@@ -41,7 +41,7 @@ body {
   max-width: 1560px;
   background-color: #cccccc;
   padding: 1.5rem;
-  margin: 32px 0;
+  margin: 28px 0;
   display: flex;
   background: linear-gradient(20deg, #646464, #f3f3f39d);
 }
@@ -49,6 +49,7 @@ body {
 .form-control {
   background: linear-gradient(-190deg, #bbbbbb, #859c85de);
 }
+
 
 .mx-6{
   margin-right: auto;
@@ -62,6 +63,13 @@ body {
   margin-right: 30px;
   height: 740px;
   max-width: 380px;
+  background: linear-gradient(-190deg, #707070, #4e664ede);
+}
+
+.page-window{
+  flex: 1;
+  height: fit-content;
+  width: fit-content;
   background: linear-gradient(-190deg, #707070, #4e664ede);
 }
 
@@ -88,7 +96,7 @@ body {
 }
 
 .calendar{
-  min-height: calc(100vh - 225px); /* Adjust the 100px to the combined height of your header/footer */
+  min-height: calc(100vh - 220px); /* Adjust the 100px to the combined height of your header/footer */
   width: 100%; /* Full width */
 }
 

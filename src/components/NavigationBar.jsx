@@ -56,7 +56,7 @@ const collapseNavbarText = () => {
 
           <ul className="dropdown-menu">
             <li>
-              <Link className="dropdown-item" to="/Pacjenci">
+              <Link className="dropdown-item" to="/Wszyscy Pacjenci">
                 Wszyscy pacjenci
               </Link>
             </li>
@@ -81,7 +81,7 @@ const collapseNavbarText = () => {
       </ul>
       <form className="d-flex" role="search">
         <input
-          className="form-control me-4 border border-success-subtle"
+          className="form-control me-4 border border-success-subtle sizefix"
           type="search"
           placeholder="Szukaj pacjentów"
           aria-label="Search"
