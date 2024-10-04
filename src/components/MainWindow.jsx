@@ -27,6 +27,7 @@ const MainWindow = () => {
               type="search"
               placeholder="Wyszukaj choroby"
               aria-label="Search"
+              id="SearchDisease"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
             />

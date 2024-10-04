@@ -1,5 +1,4 @@
 body {
-  margin: 3px;
   font-family: 'Times New Roman', Times, serif; 
   font-weight: bold;
   font-style: oblique;
@@ -11,6 +10,9 @@ body {
 .navbar{
   background: linear-gradient(-2deg, #ffffff, #2861005b);
   color: #ffffff; 
+}
+.nav-item{
+  display: flex;
 }
 
 .dropdown-menu {
@@ -46,6 +48,10 @@ body {
 
 .form-control {
   background: linear-gradient(-190deg, #bbbbbb, #859c85de);
+}
+
+.mx-6{
+  margin-right: auto;
 }
 
 .left-column {
@@ -84,4 +90,8 @@ body {
 .calendar{
   min-height: calc(100vh - 225px); /* Adjust the 100px to the combined height of your header/footer */
   width: 100%; /* Full width */
+}
+
+.dropdown-menu{
+  opacity: 0.87;
 }

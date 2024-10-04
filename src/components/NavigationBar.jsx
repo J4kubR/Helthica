@@ -10,6 +10,15 @@ const collapseNavbarText = () => {
           <Link
             className="nav-link active mx-4 text-body-secondary align-baseline"
             aria-current="page"
+            to="/"
+          >
+            Pacjenci
+          </Link>
+        </li>
+        <li className="nav-item">
+          <Link
+            className="nav-link active mx-4 text-body-secondary align-baseline"
+            aria-current="page"
             to="/Deklaracje"
           >
             Deklaracje
@@ -47,7 +56,7 @@ const collapseNavbarText = () => {
 
           <ul className="dropdown-menu">
             <li>
-              <Link className="dropdown-item" to="#">
+              <Link className="dropdown-item" to="/Pacjenci">
                 Wszyscy pacjenci
               </Link>
             </li>
@@ -63,7 +72,7 @@ const collapseNavbarText = () => {
             </li>
 
             <li>
-              <Link className="dropdown-item" to="#">
+              <Link className="dropdown-item" to="/Ustawienia">
                 Ustawienia
               </Link>
             </li>
@@ -72,12 +81,13 @@ const collapseNavbarText = () => {
       </ul>
       <form className="d-flex" role="search">
         <input
-          className="form-control me-2"
+          className="form-control me-4 border border-success-subtle"
           type="search"
           placeholder="Szukaj pacjentów"
           aria-label="Search"
+          id="SearchPatients"
         />
-        <button className="btn btn-success mx-3" type="submit">
+        <button className="btn btn-success mx-3 px-4" type="submit">
           Szukaj
         </button>
       </form>
