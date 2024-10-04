@@ -9,6 +9,7 @@ CORS(app)
 model = load_model("./AI_pred_v1.h5")
 
 
+# getting the app to query a prediction then send it to the web server
 @app.route("/get-function/<query>", methods=["GET"])
 def get_function(query):
     sentences = [query]

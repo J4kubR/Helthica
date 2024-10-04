@@ -82,7 +82,6 @@ body {
 }
 
 .calendar{
-  flex:1;
-  height: 300px;
-
+  min-height: calc(100vh - 225px); /* Adjust the 100px to the combined height of your header/footer */
+  width: 100%; /* Full width */
 }

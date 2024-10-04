@@ -2,12 +2,13 @@ import os
 import pandas as pd
 import numpy as np
 import tensorflow as tf
-from tensorflow import keras
+import keras
 from keras import layers
 from sklearn.model_selection import train_test_split
-from keras.preprocessing.text import Tokenizer
 from sklearn.preprocessing import LabelEncoder
-from keras.preprocessing.sequence import pad_sequences
+from keras_preprocessing.sequence import pad_sequences
+from keras_preprocessing.text import Tokenizer
+
 
 os.environ["TF_CPP_MIN_LOG_LEVEL"] = "2"
 
@@ -88,7 +89,7 @@ def AI_prediction(model, tokenizer, max_sequence_length, sentences):
         sequences, maxlen=max_sequence_length, padding="post", truncating="post"
     )
 
-    # Make predictions
+    # this is for the prediction from the model
     predictions = model.predict(padded_sequences)
 
     # Convert predictions to class labels
