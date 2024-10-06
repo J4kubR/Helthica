@@ -8,6 +8,22 @@ The purpose is to maintain and evolve the Medical Sector with AI and its possibi
 NAME OF THE APP:
 Heltica
 
+# 06.10.2024
+
+Design is getting better, I just saw that I need to redo the calendar. The 3 rectangles on the main page purpose will
+be to:
+Left column -> Show the patients for today, in the chronological order, such that the doctor can easily get a head start for the day
+Right uprow -> The function will eventually be to record and analyse the appointment with AI suppervision, which
+will give the doctor everything he needs. (Maybe in the future the AI will speak back (quite easy to do, yet maybe need a bigger team), giving ideas and helping the doctor making the right decisions)
+Right downrow -> Will be a calendar for the whole day, maybe some meetings, brakes and when the appointments are scheduled.
+
+# 04.10.2024
+
+Came back after some time of relaxation, had been traveling to different countries. Focus mainly on the design part,
+aswell as the database for the patients in MySql, possibly going to change that in the future, mysql works for now
+because it is free and I have been using mysql in my studies, for now keeping it simple, so one table with all the
+information.
+
 # 07.11.2023
 
 Had some time off, did research about how AI/ML works and how can it be implemented more securely and efficient.
