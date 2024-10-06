@@ -5,6 +5,17 @@ const MainWindow = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [result, setresult] = useState(null);
 
+  const handleDatabase = (c) => {
+    c.preventDefault();
+
+    axios
+      .get(`http://127.0.0.1:5000/get-users`)
+      .then((response) => {
+        setresult(response.data.rows);
+      })
+      .catch((error) => console.error("Error:", error));
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -35,7 +46,7 @@ const MainWindow = () => {
               Szukaj
             </button>
           </form>
-          <p className="RESULT">{result}</p>
+          <p className="RESULT"> The disease is: {result}</p>
         </div>
 
         <div className="row rounded-5 ">Hello 3</div>

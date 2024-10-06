@@ -64,7 +64,7 @@ model.compile(
 
 # Train the model
 epochs = 5
-batch_size = 18
+batch_size = 8
 
 model.fit(
     X_train_padded,

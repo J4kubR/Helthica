@@ -1,14 +1,16 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 from AIsolution import AI_prediction, tokenizer, maxlen
-from keras.models import load_model
+import keras
 import mysql.connector
 
 
 app = Flask(__name__)
 CORS(app)
 
-model = load_model("./AI_pred_v1.h5")
+model = keras.saving.load_model(
+    "./AI_pred_v1.h5", custom_objects=None, compile=True, safe_mode=True
+)
 
 
 def find_database():
