@@ -110,7 +110,9 @@ const MainWindow = () => {
           <p className="RESULT"> The disease is: {result}</p>
         </div>
 
-        <div className="row rounded-5 ">Hello 3</div>
+        <div className="row rounded-5">
+          <div class="calendar"></div>
+        </div>
       </div>
     </div>
   );

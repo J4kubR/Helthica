@@ -13,12 +13,12 @@ model = keras.saving.load_model(
 )
 
 
-def find_database():
+def find_database(queryname):
     mysql_connection = mysql.connector.connect(
         host="localhost", user="root", password="password", database="Patients"
     )
     cursor = mysql_connection.cursor()
-    query = "SELECT * from users"
+    query = queryname
     cursor.execute(query)
     rows = cursor.fetchall()
     cursor.close()
@@ -27,9 +27,26 @@ def find_database():
     return rows
 
 
+@app.route("/get-appointment", methods=["GET"])
+def get_appointment():
+    rows = find_database(
+        "select users.name, timetable.description, date_time from timetable, users where users.id = timetable.id"
+    )
+    appointments = []
+    for row in rows:
+        name, description, date_time = row
+        appointments_data = {
+            "name": name,
+            "description": description,
+            "date_time": date_time,
+        }
+        appointments.append(appointments_data)
+    return jsonify(appointments)
+
+
 @app.route("/get-users", methods=["GET"])
 def get_database():
-    rows = find_database()
+    rows = find_database("SELECT * from users")
     users = []
     for row in rows:
         id, name, address, age, last_doctor_visit, description, picture_url = row

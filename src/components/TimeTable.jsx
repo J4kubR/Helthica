@@ -107,10 +107,10 @@ function TimeTable() {
             selected={newEvent.end}
             onChange={(end) => setNewEvent({ ...newEvent, end })}
           />
-          <button style={{ marginTop: "10px" }} onClick={handleAddEvent}>
-            Add Event
-          </button>
         </div>
+        <button class="button" onClick={handleAddEvent}>
+          Add Event
+        </button>
       </Calendar>
     </div>
   );
