@@ -1,7 +1,6 @@
 import os
 import pandas as pd
 import numpy as np
-import tensorflow as tf
 import keras
 from keras import layers
 from sklearn.model_selection import train_test_split
@@ -61,7 +60,6 @@ model = keras.Sequential(
 model.compile(
     optimizer="adam", loss="sparse_categorical_crossentropy", metrics=["accuracy"]
 )
-
 # Train the model
 epochs = 5
 batch_size = 8

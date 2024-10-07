@@ -68,18 +68,21 @@ const MainWindow = () => {
           {patients.length > 0 && currentPatient && (
             <div className="">
               <img
-                className="rounded-5 m-2 border border-3 border-success"
+                className="rounded-5 m-2 border border-3 border-success thumbnail"
                 src={currentPatient.picture_url}
-                style={{ width: "200px", height: "200px", objectFit: "cover" }}
               />
               <p>{currentPatient.name}</p>
               <div className="d-grid ">
-                <p className="fst-normal">Adres: {currentPatient.address}</p>
-                <p className="fst-normal">Wiek: {currentPatient.age}</p>
-                <p className="fst-normal">
+                <p className="fs-6 font-monospace border border-4 rounded-5 mx-1 p-2 border-success-subtle">
+                  Adres: {currentPatient.address}
+                </p>
+                <p className="fs-6 font-monospace border border-4 rounded-5 mx-1 p-2 border-success-subtle">
+                  Wiek: {currentPatient.age}
+                </p>
+                <p className="fs-6 font-monospace border border-4 rounded-5 mx-1 p-2 border-success-subtle">
                   Ostatnia Wizyta: {currentPatient.last_doctor_visit}
                 </p>
-                <p className="fst-normal d-flex">
+                <p className="fs-6 font-monospace border border-4 rounded-5 mx-1 p-2 border-success-subtle textlength">
                   Informacje: {currentPatient.description}
                 </p>
               </div>

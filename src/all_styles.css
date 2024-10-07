@@ -96,10 +96,24 @@ body {
 }
 
 .calendar{
-  min-height: calc(100vh - 220px); /* Adjust the 100px to the combined height of your header/footer */
-  width: 100%; /* Full width */
+  min-height: calc(100vh - 220px);
+  width: 100%;
 }
 
 .dropdown-menu{
   opacity: 0.87;
+}
+
+.thumbnail{
+  width: 200px;
+  height: 200px;
+  object-fit:cover;
+}
+
+.textlength{
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3; 
+  -webkit-box-orient: vertical;
+  text-overflow: ellipsis;
 }
