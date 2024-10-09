@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify
+from flask import Flask, jsonify
 from flask_cors import CORS
 from AIsolution import AI_prediction, tokenizer, maxlen
 import keras
@@ -27,38 +27,34 @@ def find_database(queryname):
     return rows
 
 
-@app.route("/get-appointment", methods=["GET"])
-def get_appointment():
-    rows = find_database(
-        "select users.name, timetable.description, date_time, date_time_finish from timetable, users where users.id = timetable.id and DATE(date_time) = curdate() and TIME(date_time_finish) > curtime() order by date_time"
-    )
-    appointments = []
-    for row in rows:
-        name, description, date_time, date_time_finish = row
-        appointments_data = {
-            "name": name,
-            "description": description,
-            "date_time": date_time,
-            "date_time_finish": date_time_finish,
-        }
-        appointments.append(appointments_data)
-    return jsonify(appointments)
-
-
 @app.route("/get-users", methods=["GET"])
 def get_database():
-    rows = find_database("SELECT * from users")
+    rows = find_database(
+        "select users.name, users.description,address, age, last_doctor_visit,timetable.description, date_time, date_time_finish, picture_url from timetable, users where users.id = timetable.id and DATE(date_time) = curdate() and TIME(date_time_finish) > curtime() order by date_time"
+    )
     users = []
     for row in rows:
-        id, name, address, age, last_doctor_visit, description, picture_url = row
+        (
+            name,
+            description,
+            address,
+            age,
+            last_doctor_visit,
+            description_timetable,
+            date_time,
+            date_time_finish,
+            picture_url,
+        ) = row
         user_data = {
-            "id": id,
             "name": name,
             "address": address,
             "age": age,
             "last_doctor_visit": last_doctor_visit,
             "description": description,
             "picture_url": picture_url,
+            "description_timetable": description_timetable,
+            "date_time": date_time,
+            "date_time_finish": date_time_finish,
         }
         users.append(user_data)
     return jsonify(users)

@@ -19,25 +19,22 @@ const MainWindow = () => {
   const [result, setresult] = useState(null);
   const [patients, setPatients] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [appointments, setAppointments] = useState([]);
-
-  // used an effect such that it will automatically get the patient and appointment database
-  useEffect(() => {
-    axios
-      .get("http://127.0.0.1:5000/get-appointment")
-      .then((response) => {
-        setAppointments(response.data);
-      })
-      .catch((error) => console.error("Error loading patients:", error));
-  }, []);
 
   useEffect(() => {
-    axios
-      .get("http://127.0.0.1:5000/get-users")
-      .then((response) => {
+    const fetchPatients = async () => {
+      try {
+        const response = await axios.get("http://127.0.0.1:5000/get-users");
         setPatients(response.data);
-      })
-      .catch((error) => console.error("Error loading patients:", error));
+      } catch (error) {
+        console.error("Error loading patients:", error);
+      }
+    };
+
+    fetchPatients();
+
+    const interval = setInterval(fetchPatients, 5000);
+
+    return () => clearInterval(interval);
   }, []);
 
   const handleSubmit = (e) => {
@@ -77,7 +74,10 @@ const MainWindow = () => {
             >
               Poprzedni
             </button>
-            <h4 className="fw-bold fst-normal text-light m-1 mx-3">Pacjenci</h4>
+            <h4 className="fw-bold fst-normal text-light m-1 mx-3">
+              {" "}
+              Dzisiejsi Pacjenci
+            </h4>
             <button
               className="btn btn-success mx-3 px-2"
               onClick={handleNext}
@@ -145,10 +145,10 @@ const MainWindow = () => {
               </tr>
             </thead>
             <tbody class="table-group-divider">
-              {appointments.slice(0, 7).map((item, index) => (
+              {patients.slice(0, 7).map((item, index) => (
                 <tr key={index} scope="row">
                   <td>{item.name}</td>
-                  <td>{item.description}</td>
+                  <td>{item.description_timetable}</td>
                   <td>{formatTime(item.date_time)}</td>
                   <td>{formatTime(item.date_time_finish)}</td>
                 </tr>
