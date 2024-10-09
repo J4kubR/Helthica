@@ -117,3 +117,7 @@ body {
   -webkit-box-orient: vertical;
   text-overflow: ellipsis;
 }
+
+.table{
+  color: linear-gradient(-30deg, #20532f, #6d6c6c7a);
+}

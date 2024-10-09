@@ -1,13 +1,36 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
+function formatTime(dateString) {
+  const date = new Date(dateString);
+  const hours = date.getUTCHours().toString().padStart(2, "0");
+  const minutes = date.getUTCMinutes().toString().padStart(2, "0");
+  return `${hours}:${minutes}`;
+}
+
+function formatDate(dateString) {
+  const date = new Date(dateString);
+  const options = { year: "numeric", month: "short", day: "numeric" };
+  return date.toLocaleDateString("pl-PL", options);
+}
+
 const MainWindow = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [result, setresult] = useState(null);
   const [patients, setPatients] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [appointments, setAppointments] = useState([]);
 
-  // used an effect such that it will automatically get the patient database
+  // used an effect such that it will automatically get the patient and appointment database
+  useEffect(() => {
+    axios
+      .get("http://127.0.0.1:5000/get-appointment")
+      .then((response) => {
+        setAppointments(response.data);
+      })
+      .catch((error) => console.error("Error loading patients:", error));
+  }, []);
+
   useEffect(() => {
     axios
       .get("http://127.0.0.1:5000/get-users")
@@ -80,7 +103,8 @@ const MainWindow = () => {
                   Wiek: {currentPatient.age}
                 </p>
                 <p className="fs-6 font-monospace border border-4 rounded-5 mx-1 p-2 border-success-subtle">
-                  Ostatnia Wizyta: {currentPatient.last_doctor_visit}
+                  Ostatnia Wizyta:{" "}
+                  {formatDate(currentPatient.last_doctor_visit)}
                 </p>
                 <p className="fs-6 font-monospace border border-4 rounded-5 mx-1 p-2 border-success-subtle textlength">
                   Informacje: {currentPatient.description}
@@ -111,7 +135,26 @@ const MainWindow = () => {
         </div>
 
         <div className="row rounded-5">
-          <div class="calendar"></div>
+          <table class="table table-success table-hover table-sm">
+            <thead>
+              <tr>
+                <th scope="col">Imie:</th>
+                <th scope="col">Problem:</th>
+                <th scope="col">Godzina przyjscia:</th>
+                <th scope="col">Godzina wyjscia:</th>
+              </tr>
+            </thead>
+            <tbody class="table-group-divider">
+              {appointments.slice(0, 7).map((item, index) => (
+                <tr key={index} scope="row">
+                  <td>{item.name}</td>
+                  <td>{item.description}</td>
+                  <td>{formatTime(item.date_time)}</td>
+                  <td>{formatTime(item.date_time_finish)}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
       </div>
     </div>

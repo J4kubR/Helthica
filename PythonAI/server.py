@@ -30,15 +30,16 @@ def find_database(queryname):
 @app.route("/get-appointment", methods=["GET"])
 def get_appointment():
     rows = find_database(
-        "select users.name, timetable.description, date_time from timetable, users where users.id = timetable.id"
+        "select users.name, timetable.description, date_time, date_time_finish from timetable, users where users.id = timetable.id and DATE(date_time) = curdate() and TIME(date_time_finish) > curtime() order by date_time"
     )
     appointments = []
     for row in rows:
-        name, description, date_time = row
+        name, description, date_time, date_time_finish = row
         appointments_data = {
             "name": name,
             "description": description,
             "date_time": date_time,
+            "date_time_finish": date_time_finish,
         }
         appointments.append(appointments_data)
     return jsonify(appointments)
