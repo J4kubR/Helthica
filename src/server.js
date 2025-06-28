@@ -2,6 +2,8 @@ import express from 'express';
 import mongoose from 'mongoose';
 import cors from 'cors';
 import bodyParser from 'body-parser';
+import "regenerator-runtime/runtime";
+
 const json = bodyParser.json;
 
 mongoose.connect('mongodb+srv://J4kub:Xva49ucx@cluster0.dvzorzl.mongodb.net/?retryWrites=true&w=majority', {

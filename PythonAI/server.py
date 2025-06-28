@@ -8,9 +8,15 @@ import mysql.connector
 app = Flask(__name__)
 CORS(app)
 
-model = keras.saving.load_model(
-    "./AI_pred_v1.h5", custom_objects=None, compile=True, safe_mode=True
-)
+model = None
+
+
+def load_model():
+    global model
+    if model is None:
+        model = keras.saving.load_model(
+            "./AI_pred_v1.h5", custom_objects=None, compile=True, safe_mode=True
+        )
 
 
 def find_database(queryname):
@@ -63,9 +69,14 @@ def get_database():
 # getting the app to query a prediction then send it to the web server
 @app.route("/get-function/<query>", methods=["GET"])
 def get_function(query):
+    load_model()
     sentences = [query]
-    predicted_labels = AI_prediction(model, tokenizer, maxlen, sentences).tolist()
-    return jsonify({"predicted_labels": predicted_labels})
+    try:
+        predicted_labels = AI_prediction(model, tokenizer, maxlen, sentences).tolist()
+        return jsonify({"predicted_labels": predicted_labels})
+    except Exception as e:
+        print("Prediction error came as: {e}")
+        return jsonify("Prediction failed"), 500
 
 
 if __name__ == "__main__":

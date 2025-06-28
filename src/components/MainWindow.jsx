@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
+const API_BASE_URL = "http://127.0.0.1:5000";
+
 function formatTime(dateString) {
   const date = new Date(dateString);
-  const hours = date.getUTCHours().toString().padStart(2, "0");
-  const minutes = date.getUTCMinutes().toString().padStart(2, "0");
-  return `${hours}:${minutes}`;
+  return `${date.getUTCHours().toString().padStart(2, "0")}:${date
+    .getUTCMinutes()
+    .toString()
+    .padStart(2, "0")}`;
 }
 
 function formatDate(dateString) {
@@ -15,15 +18,38 @@ function formatDate(dateString) {
 }
 
 const MainWindow = () => {
-  const [searchQuery, setSearchQuery] = useState("");
-  const [result, setresult] = useState(null);
+  const [isListening, setIsListening] = useState(false);
+  const [transcript, setTranscript] = useState("");
+  const [diseaseResult, setDiseaseResult] = useState(null);
   const [patients, setPatients] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
+
+  let recognition;
+
+  // Check if browser supports Web Speech API
+  if ("webkitSpeechRecognition" in window) {
+    recognition = new window.webkitSpeechRecognition();
+    recognition.continuous = true; // Enable continuous recognition
+    recognition.interimResults = true; // Get interim results for real-time transcription
+    recognition.lang = "en-US";
+
+    recognition.onresult = (event) => {
+      let fullTranscript = "";
+
+      // Loop through all results and combine both interim and final results
+      for (let i = event.resultIndex; i < event.results.length; i++) {
+        fullTranscript += event.results[i][0].transcript;
+      }
+
+      // Update transcript state to the combined transcript so far
+      setTranscript(fullTranscript);
+    };
+  }
 
   useEffect(() => {
     const fetchPatients = async () => {
       try {
-        const response = await axios.get("http://127.0.0.1:5000/get-users");
+        const response = await axios.get(`${API_BASE_URL}/get-users`);
         setPatients(response.data);
       } catch (error) {
         console.error("Error loading patients:", error);
@@ -31,33 +57,38 @@ const MainWindow = () => {
     };
 
     fetchPatients();
-
     const interval = setInterval(fetchPatients, 5000);
 
     return () => clearInterval(interval);
   }, []);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    axios
-      .get(`http://127.0.0.1:5000/get-function/${searchQuery}`)
-      .then((response) => {
-        setresult(response.data.predicted_labels[0]);
-      })
-      .catch((error) => console.error("Error:", error));
+  const handleStartListening = () => {
+    setIsListening(true);
+    setTranscript("");
+    recognition.start();
   };
 
-  const handlePrevious = () => {
-    if (currentIndex > 0) {
-      setCurrentIndex(currentIndex - 1);
+  const handleStopListening = () => {
+    setIsListening(false);
+    recognition.stop(); // Stop continuous listening
+    handleDiseasePrediction(transcript); // Trigger disease prediction after stopping
+  };
+
+  const handleDiseasePrediction = async (query) => {
+    try {
+      const response = await axios.get(`${API_BASE_URL}/get-function/${query}`);
+      setDiseaseResult(response.data.predicted_labels[0]);
+    } catch (error) {
+      console.error("Error fetching disease result:", error);
     }
   };
 
-  const handleNext = () => {
-    if (currentIndex < patients.length - 1) {
-      setCurrentIndex(currentIndex + 1);
-    }
+  const handleNavigation = (direction) => {
+    setCurrentIndex((prevIndex) =>
+      direction === "next"
+        ? Math.min(prevIndex + 1, patients.length - 1)
+        : Math.max(prevIndex - 1, 0)
+    );
   };
 
   const currentPatient = patients[currentIndex];
@@ -69,33 +100,34 @@ const MainWindow = () => {
           <div className="d-flex">
             <button
               className="btn btn-success mx-2 px-2"
-              onClick={handlePrevious}
+              onClick={() => handleNavigation("prev")}
               disabled={currentIndex === 0}
             >
               Poprzedni
             </button>
             <h4 className="fw-bold fst-normal text-light m-1 mx-3">
-              {" "}
               Dzisiejsi Pacjenci
             </h4>
             <button
               className="btn btn-success mx-3 px-2"
-              onClick={handleNext}
+              onClick={() => handleNavigation("next")}
               disabled={currentIndex === patients.length - 1}
             >
               Następny
             </button>
           </div>
         </div>
+
         <div className="border border-4 my-3 border-success-subtle rounded-4">
           {patients.length > 0 && currentPatient && (
-            <div className="">
+            <div>
               <img
                 className="rounded-5 m-2 border border-3 border-success thumbnail"
                 src={currentPatient.picture_url}
+                alt={`Picture of ${currentPatient.name}`}
               />
               <p>{currentPatient.name}</p>
-              <div className="d-grid ">
+              <div className="d-grid">
                 <p className="fs-6 font-monospace border border-4 rounded-5 mx-1 p-2 border-success-subtle">
                   Adres: {currentPatient.address}
                 </p>
@@ -117,36 +149,43 @@ const MainWindow = () => {
 
       <div className="right-rows">
         <div className="row rounded-5 rowmarginbottom">
-          <form className="d-flex" onSubmit={handleSubmit}>
-            <input
-              className="form-control me-2"
-              type="search"
-              placeholder="Wyszukaj choroby"
-              aria-label="Search"
-              id="SearchDisease"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-            />
-            <button className="btn btn-primary mx-3" type="submit">
-              Szukaj
+          <div className="justify-content-end">
+            <button
+              className="btn btn-success m-2 rounded-circle p-4"
+              onClick={handleStartListening}
+              disabled={isListening}
+            >
+              Start
             </button>
-          </form>
-          <p className="RESULT"> The disease is: {result}</p>
+            <button
+              className="btn btn-success m-2 rounded-circle p-4"
+              onClick={handleStopListening}
+              disabled={!isListening}
+            >
+              Stop
+            </button>
+          </div>
+          <div>
+            {transcript && <p className="RESULT">Voice Input: {transcript}</p>}
+            {transcript && diseaseResult && (
+              <p className="RESULT">Predicted Disease: {diseaseResult}</p>
+            )}
+          </div>
         </div>
 
         <div className="row rounded-5">
-          <table class="table table-success table-hover table-sm">
+          <table className="table table-success table-hover table-sm">
             <thead>
               <tr>
                 <th scope="col">Imie:</th>
-                <th scope="col">Problem:</th>
+                <th scope="col">Choroba:</th>
                 <th scope="col">Godzina przyjscia:</th>
                 <th scope="col">Godzina wyjscia:</th>
               </tr>
             </thead>
-            <tbody class="table-group-divider">
+            <tbody className="table-group-divider">
               {patients.slice(0, 7).map((item, index) => (
-                <tr key={index} scope="row">
+                <tr key={index}>
                   <td>{item.name}</td>
                   <td>{item.description_timetable}</td>
                   <td>{formatTime(item.date_time)}</td>

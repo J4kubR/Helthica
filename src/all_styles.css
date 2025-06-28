@@ -112,8 +112,8 @@ body {
 
 .textlength{
   overflow: hidden;
-  display: -webkit-box;
-  -webkit-line-clamp: 3; 
+  display: box;
+  line-clamp: 3; 
   -webkit-box-orient: vertical;
   text-overflow: ellipsis;
 }
