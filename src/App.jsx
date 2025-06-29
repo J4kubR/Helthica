@@ -15,12 +15,12 @@ const App = () => {
         <NavigationBar />
         <Routes>
           <Route path="/" Component={MainWindow}></Route>
-          <Route path="/Terminarz" Component={TimeTable}></Route>
-          <Route path="/Pacjenci" Component={MainWindow}></Route>
-          <Route path="/Swiadczenia" Component={Provisions}></Route>
-          <Route path="/Deklaracje" Component={Declaration}></Route>
-          <Route path="/Ustawienia" Component={Settings}></Route>
-          <Route path="/Wszyscy Pacjenci" Component={All_patients}></Route>
+          <Route path="/TimeTable" Component={TimeTable}></Route>
+          <Route path="/Patients" Component={MainWindow}></Route>
+          <Route path="/Provisions" Component={Provisions}></Route>
+          <Route path="/Declaration" Component={Declaration}></Route>
+          <Route path="/Settings" Component={Settings}></Route>
+          <Route path="/All_patients" Component={All_patients}></Route>
         </Routes>
       </div>
     </Router>

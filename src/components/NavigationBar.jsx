@@ -12,25 +12,25 @@ const collapseNavbarText = () => {
             aria-current="page"
             to="/"
           >
-            Pacjenci
+            Patients
           </Link>
         </li>
         <li className="nav-item">
           <Link
             className="nav-link active mx-4 text-body-secondary align-baseline"
             aria-current="page"
-            to="/Deklaracje"
+            to="/Declaration"
           >
-            Deklaracje
+            Declaration
           </Link>
         </li>
         <li className="nav-item">
           <Link
             className="nav-link active mx-4 text-body-secondary"
             aria-current="page"
-            to="/Swiadczenia"
+            to="/Provisions"
           >
-            Świadczenia
+            Provisions
           </Link>
         </li>
 
@@ -38,9 +38,9 @@ const collapseNavbarText = () => {
           <Link
             className="nav-link active mx-4 text-body-secondary"
             aria-current="page"
-            to="/Terminarz"
+            to="/TimeTable"
           >
-            Terminarz
+            Calendar
           </Link>
         </li>
 
@@ -51,13 +51,13 @@ const collapseNavbarText = () => {
             data-bs-toggle="dropdown"
             aria-expanded="false"
           >
-            Opcje
+            More
           </a>
 
           <ul className="dropdown-menu">
             <li>
               <Link className="dropdown-item" to="/Wszyscy Pacjenci">
-                Wszyscy pacjenci
+                All patients
               </Link>
             </li>
 
@@ -73,7 +73,7 @@ const collapseNavbarText = () => {
 
             <li>
               <Link className="dropdown-item" to="/Ustawienia">
-                Ustawienia
+                Settings
               </Link>
             </li>
           </ul>
@@ -83,12 +83,12 @@ const collapseNavbarText = () => {
         <input
           className="form-control me-4 border border-success-subtle sizefix"
           type="search"
-          placeholder="Szukaj pacjentów"
+          placeholder="Search for patients"
           aria-label="Search"
           id="SearchPatients"
         />
         <button className="btn btn-success mx-3 px-4" type="submit">
-          Szukaj
+          Search
         </button>
       </form>
     </div>

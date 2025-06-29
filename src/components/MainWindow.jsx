@@ -103,17 +103,17 @@ const MainWindow = () => {
               onClick={() => handleNavigation("prev")}
               disabled={currentIndex === 0}
             >
-              Poprzedni
+              Previous
             </button>
             <h4 className="fw-bold fst-normal text-light m-1 mx-3">
-              Dzisiejsi Pacjenci
+              Todays Patients
             </h4>
             <button
               className="btn btn-success mx-3 px-2"
               onClick={() => handleNavigation("next")}
               disabled={currentIndex === patients.length - 1}
             >
-              Następny
+              Next
             </button>
           </div>
         </div>
@@ -129,17 +129,16 @@ const MainWindow = () => {
               <p>{currentPatient.name}</p>
               <div className="d-grid">
                 <p className="fs-6 font-monospace border border-4 rounded-5 mx-1 p-2 border-success-subtle">
-                  Adres: {currentPatient.address}
+                  Address: {currentPatient.address}
                 </p>
                 <p className="fs-6 font-monospace border border-4 rounded-5 mx-1 p-2 border-success-subtle">
-                  Wiek: {currentPatient.age}
+                  Age: {currentPatient.age}
                 </p>
                 <p className="fs-6 font-monospace border border-4 rounded-5 mx-1 p-2 border-success-subtle">
-                  Ostatnia Wizyta:{" "}
-                  {formatDate(currentPatient.last_doctor_visit)}
+                  Last Visit: {formatDate(currentPatient.last_doctor_visit)}
                 </p>
                 <p className="fs-6 font-monospace border border-4 rounded-5 mx-1 p-2 border-success-subtle textlength">
-                  Informacje: {currentPatient.description}
+                  Description: {currentPatient.description}
                 </p>
               </div>
             </div>
@@ -177,10 +176,10 @@ const MainWindow = () => {
           <table className="table table-success table-hover table-sm">
             <thead>
               <tr>
-                <th scope="col">Imie:</th>
-                <th scope="col">Choroba:</th>
-                <th scope="col">Godzina przyjscia:</th>
-                <th scope="col">Godzina wyjscia:</th>
+                <th scope="col">Name:</th>
+                <th scope="col">Illness:</th>
+                <th scope="col">Time of Arrival:</th>
+                <th scope="col">Time of Leave:</th>
               </tr>
             </thead>
             <tbody className="table-group-divider">
