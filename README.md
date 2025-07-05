@@ -1,4 +1,6 @@
 # Project-CCCLVI-
+![image](https://github.com/user-attachments/assets/02038469-29d5-41a4-a67d-c139b4825d46)
+
 
 LANGUAGE: POLISH for now.
 
