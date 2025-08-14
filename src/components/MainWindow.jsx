@@ -14,7 +14,7 @@ function formatTime(dateString) {
 function formatDate(dateString) {
   const date = new Date(dateString);
   const options = { year: "numeric", month: "short", day: "numeric" };
-  return date.toLocaleDateString("pl-PL", options);
+  return date.toLocaleDateString("en-US", options);
 }
 
 const MainWindow = () => {
@@ -165,7 +165,9 @@ const MainWindow = () => {
             </button>
           </div>
           <div>
-            {transcript && <p className="RESULT">Voice Input: {transcript}</p>}
+            {transcript && (
+              <p className="RESULT">Voice Transcript: {transcript}</p>
+            )}
             {transcript && diseaseResult && (
               <p className="RESULT">Predicted Disease: {diseaseResult}</p>
             )}
