@@ -1,3 +1,6 @@
+<img width="1844" height="963" alt="Screenshot from 2024-10-09 08-54-40" src="https://github.com/user-attachments/assets/4c45df5c-872e-4da6-b5b9-3c396c274063" />
+
+
 # Project-CCCLVI-
 
 LANGUAGE: POLISH for now.
